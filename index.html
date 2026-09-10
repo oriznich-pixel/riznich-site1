@@ -1,0 +1,391 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Иван Ризнич — Художник</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #faf8f6;
+            color: #1e1e1e;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            padding: 30px 0 20px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            font-weight: normal;
+            color: #888;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #1e1e1e;
+            margin-left: 25px;
+            font-size: 15px;
+        }
+
+        nav a:hover {
+            color: #b47b5a;
+        }
+
+        .hero {
+            display: flex;
+            gap: 40px;
+            padding: 50px 0 60px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .hero-text {
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .hero-text h1 {
+            font-size: 40px;
+            font-weight: normal;
+        }
+
+        .hero-text h1 span {
+            font-weight: bold;
+        }
+
+        .hero-text p {
+            font-size: 18px;
+            color: #555;
+            margin: 15px 0 25px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #b47b5a;
+            color: #fff;
+            padding: 12px 30px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 4px;
+        }
+
+        .btn:hover {
+            background: #9e694b;
+        }
+
+        .hero-image {
+            flex: 1;
+            min-width: 280px;
+            background: #ede8e2;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .section-title {
+            font-size: 26px;
+            font-weight: normal;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 12px;
+            margin: 40px 0 25px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 4px;
+            padding-bottom: 15px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+
+        .card-img {
+            background: #ede8e2;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+            border-radius: 4px 4px 0 0;
+        }
+
+        .card-body {
+            padding: 15px 18px;
+        }
+
+        .card-body h3 {
+            font-size: 17px;
+        }
+
+        .card-body p {
+            font-size: 14px;
+            color: #666;
+            margin: 4px 0 8px;
+        }
+
+        .year {
+            display: inline-block;
+            background: #f0ebe5;
+            padding: 2px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+        }
+
+        .more-link {
+            color: #b47b5a;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+            display: inline-block;
+            margin-top: 6px;
+        }
+
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin: 10px 0 40px;
+        }
+
+        .news-item {
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .news-item .date {
+            font-size: 13px;
+            color: #888;
+            text-transform: uppercase;
+        }
+
+        .news-item h4 {
+            font-size: 18px;
+            margin: 5px 0 6px;
+        }
+
+        .news-item p {
+            color: #555;
+            font-size: 15px;
+        }
+
+        .collector-box {
+            background: #fff;
+            padding: 25px 30px;
+            border-radius: 4px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+            margin: 10px 0 20px;
+        }
+
+        .collector-box h2 {
+            font-weight: normal;
+            font-size: 22px;
+        }
+
+        .collector-box p {
+            color: #555;
+            margin: 6px 0 15px;
+        }
+
+        .chat-label {
+            display: inline-block;
+            margin-left: 20px;
+            font-size: 14px;
+            color: #888;
+        }
+
+        footer {
+            border-top: 1px solid #ddd;
+            padding: 30px 0 25px;
+            margin-top: 50px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            font-size: 14px;
+            color: #666;
+        }
+
+        @media (max-width: 700px) {
+            .hero {
+                flex-direction: column;
+            }
+            .two-col {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            .header-inner {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            nav a {
+                margin-left: 0;
+                margin-right: 18px;
+            }
+            .chat-label {
+                margin-left: 0;
+                display: block;
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container header-inner">
+        <div class="logo">Иван Ризнич <span>/ живопись</span></div>
+        <nav>
+            <a href="#">Каталог</a>
+            <a href="#">Выставки</a>
+            <a href="#">Статьи</a>
+            <a href="#">Коллекционерам</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <div class="container">
+
+        <!-- ГЕРОЙ — ТЕКСТ ИЗМЕНЁН -->
+        <section class="hero">
+            <div class="hero-text">
+                <h1>Иван Иванович <span>Ризнич</span></h1>
+                <p>Художник, чьи работы хранятся в частных коллекциях и музеях. Фарфор, графика, авторские техники.</p>
+                <a href="#" class="btn">Смотреть каталог</a>
+            </div>
+            <div class="hero-image">
+    <img src="foto.jpg" alt="Иван Ризнич" style="width:100%; height:100%; object-fit:cover; border-radius:4px;">
+</div>
+        </section>
+
+        <h2 class="section-title">Избранные работы</h2>
+        <h2 class="section-title">Избранные работы</h2>
+<div class="gallery-grid">
+
+    <!-- Карточка 1 -->
+    <div class="card">
+        <div class="card-img">
+            <img src="settr.jpg" alt="Шотландский сеттр" style="width:100%; height:100%; object-fit:cover; border-radius:4px 4px 0 0;">
+        </div>
+        <div class="card-body">
+            <h3>Шотландский сеттр</h3>
+            <p>Бумага,карандаш</p>
+            <span class="year">1975</span>
+            <br>
+            <a href="#" class="more-link">Подробнее →</a>
+        </div>
+    </div>
+
+    <!-- Карточка 2 -->
+    <div class="card">
+        <div class="card-img">
+            <img src="zhuravli.jpg" alt="Журавли славят зарю" style="width:100%; height:100%; object-fit:cover; border-radius:4px 4px 0 0;">
+        </div>
+        <div class="card-body">
+            <h3>Журавли славят зарю</h3>
+            <p>Бумага, акварель</p>
+            <span class="year">1969</span>
+            <br>
+            <a href="#" class="more-link">Подробнее →</a>
+        </div>
+    </div>
+
+    <!-- Карточка 3 -->
+    <div class="card">
+        <div class="card-img">
+            <img src="pointer.jpg" alt="Скульптура "Пойнтер" (рыжий)" style="width:100%; height:100%; object-fit:cover; border-radius:4px 4px 0 0;">
+        </div>
+        <div class="card-body">
+            <h3>Скульптура "Пойнтер" (рыжий)</h3>
+            <p>Роспись подглазурная полихромная</p>
+            <span class="year">1969</span>
+            <br>
+            <a href="#" class="more-link">Подробнее →</a>
+        </div>
+    </div>
+
+</div>
+
+        <div class="two-col">
+            <div>
+                <h2 class="section-title" style="margin-top: 5px;">Анонсы выставок</h2>
+                <div class="news-item">
+                    <div class="date">25 мая — 15 июня 2026</div>
+                    <h4>Свет и тень</h4>
+                    <p>Персональная выставка в галерее «Арт-Холл». Новые работы 2024–2026.</p>
+                </div>
+                <div class="news-item">
+                    <div class="date">10–30 апреля 2026</div>
+                    <h4>Традиция и современность</h4>
+                    <p>Музей современного искусства, зал №4. Серия городских пейзажей.</p>
+                </div>
+                <a href="#" class="more-link">Все выставки →</a>
+            </div>
+
+            <div>
+                <h2 class="section-title" style="margin-top: 5px;">Свежие статьи</h2>
+                <div class="news-item">
+                    <div class="date">12 сентября 2025</div>
+                    <h4>Творческий путь Ризнича</h4>
+                    <p>От первых этюдов до признания — интервью с искусствоведом.</p>
+                </div>
+                <div class="news-item">
+                    <div class="date">28 августа 2025</div>
+                    <h4>Техника воздушной перспективы</h4>
+                    <p>Разбор приёмов на примере работ Ивана Ивановича.</p>
+                </div>
+                <a href="#" class="more-link">Все статьи →</a>
+            </div>
+        </div>
+
+        <div class="collector-box">
+            <h2>Коллекционерам</h2>
+            <p>Работы доступны для приобретения. Для получения полного списка цен и условий свяжитесь с галереей.</p>
+            <a href="#" class="btn">Узнать о продажах</a>
+            <span class="chat-label">✉️ чат коллекционеров — в разработке</span>
+        </div>
+
+    </div>
+</main>
+
+<footer>
+    <div class="container" style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; width: 100%;">
+        <span>© 2026 Иван Ризнич · Все права защищены</span>
+        <span>gallery@riznich.art</span>
+    </div>
+</footer>
+
+</body>
+</html>
