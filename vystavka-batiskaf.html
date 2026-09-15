@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>«Искусство в каждом штрихе» — Иван Ризнич</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #faf8f6;
+            color: #1e1e1e;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            padding: 30px 0 20px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+            text-decoration: none;
+            color: #1e1e1e;
+        }
+
+        .logo span { font-weight: normal; color: #888; }
+
+        nav { display: flex; gap: 25px; flex-wrap: wrap; }
+
+        nav a {
+            text-decoration: none;
+            color: #1e1e1e;
+            font-size: 15px;
+            border-bottom: 2px solid transparent;
+            padding-bottom: 4px;
+            transition: 0.2s;
+        }
+
+        nav a:hover, nav a.active {
+            color: #b47b5a;
+            border-bottom-color: #b47b5a;
+        }
+
+        /* Заголовок выставки */
+        .exhibition-header {
+            padding: 50px 0 30px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .exhibition-header h1 {
+            font-size: 36px;
+            font-weight: normal;
+            letter-spacing: -0.5px;
+            margin-bottom: 12px;
+        }
+
+        .exhibition-meta {
+            color: #b47b5a;
+            font-weight: bold;
+            font-size: 15px;
+            margin-bottom: 6px;
+        }
+
+        .exhibition-place {
+            color: #888;
+            font-size: 15px;
+            font-style: italic;
+        }
+
+        .exhibition-desc {
+            margin-top: 20px;
+            font-size: 17px;
+            color: #3d3d3d;
+            max-width: 750px;
+        }
+
+        /* Афиша */
+        .afisha-block {
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .afisha-block img {
+            max-width: 500px;
+            width: 100%;
+            border-radius: 6px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        /* Галерея */
+        .section-title {
+            font-size: 24px;
+            font-weight: normal;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 12px;
+            margin: 50px 0 25px;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 16px;
+        }
+
+        .gallery a {
+            display: block;
+            aspect-ratio: 1/1;
+            overflow: hidden;
+            border-radius: 4px;
+            background: #ede8e2;
+            transition: 0.2s;
+        }
+
+        .gallery a:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Лайтбокс (увеличение по клику) */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .lightbox.active { display: flex; }
+
+        .lightbox img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #fff;
+            font-size: 36px;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 30px;
+            color: #b47b5a;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 15px;
+        }
+
+        .back-link:hover { color: #9e694b; }
+
+        footer {
+            border-top: 1px solid #ddd;
+            padding: 30px 0 25px;
+            margin-top: 60px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            font-size: 14px;
+            color: #666;
+            gap: 10px;
+        }
+
+        @media (max-width: 700px) {
+            .exhibition-header h1 { font-size: 26px; }
+            .header-inner { flex-direction: column; align-items: flex-start; }
+            nav { gap: 15px; }
+            .gallery { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container header-inner">
+        <a href="index.html" class="logo">Иван Ризнич <span>/ живопись</span></a>
+        <nav>
+            <a href="index.html">Главная</a>
+            <a href="#">Каталог</a>
+            <a href="exhibitions.html" class="active">Выставки</a>
+            <a href="#">Статьи</a>
+            <a href="#">Коллекционерам</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <div class="container">
+
+        <section class="exhibition-header">
+            <div class="exhibition-meta">12 января — 12 февраля</div>
+            <h1>«Искусство в каждом штрихе»</h1>
+            <div class="exhibition-place">Библиотечно-культурный центр «Батискаф», Кронштадт, ул. Флотская, 5</div>
+            <p class="exhibition-desc">
+                Эта выставка раскрывает многогранный талант мастера. Он был виртуозным мастером фарфоровой росписи, скульптором и вдохновлённым анималистом, чьей музой служила природа.
+            </p>
+        </section>
+
+        <!-- Афиша -->
+        <div class="afisha-block">
+            <img src="afisha.jpg" alt="Афиша выставки «Искусство в каждом штрихе»" onclick="openLightbox(this.src)">
+        </div>
+
+        <!-- Галерея -->
+        <h2 class="section-title">Фотографии с выставки</h2>
+        <div class="gallery">
+
+            <a href="#" onclick="openLightbox('vystavka%20(1).jpg'); return false;"><img src="vystavka%20(1).jpg" alt="Фото 1" loading="lazy"></a>
+            <a href="#" onclick="openLightbox('vystavka%20(2).jpg'); return false;"><img src="vystavka%20(2).jpg" alt="Фото 2" loading="lazy"></a>
+            <a href="#" onclick="openLightbox('vystavka%20(3).jpg'); return false;"><img src="vystavka%20(3).jpg" alt="Фото 3" loading="lazy"></a>
+            <a href="#" onclick="openLightbox('vystavka%20(4).jpg'); return false;"><img src="vystavka%20(4).jpg" alt="Фото 4" loading="lazy"></a>
+            <a href="#" onclick="openLightbox('vystavka%20(5).jpg'); return false;"><img src="vystavka%20(5).jpg" alt="Фото 5" loading="lazy"></a>
+            <a href="#" onclick="openLightbox('vystavka%20(6).jpg'); return false;"><img src="vystavka%20(6).jpg" alt="Фото 6" loading="lazy"></a>
+            <a href="#" onclick="openLightbox('vystavka%20(7).jpg'); return false;"><img src="vystavka%20(7).jpg" alt="Фото 7" loading="lazy"></a>
+            <a href="#" onclick="openLightbox('vystavka%20(8).jpg'); return false;"><img src="vystavka%20(8).jpg" alt="Фото 8" loading="lazy"></a>
+            <a href="#" onclick="openLightbox('vystavka%20(10).jpg'); return false;"><img src="vystavka%20(10).jpg" alt="Фото 10" loading="lazy"></a>
+            <a href="#" onclick="openLightbox('vystavka%20(11).jpg'); return false;"><img src="vystavka%20(11).jpg" alt="Фото 11" loading="lazy"></a>
+            <a href="#" onclick="openLightbox('vystavka%20(12).jpg'); return false;"><img src="vystavka%20(12).jpg" alt="Фото 12" loading="lazy"></a>
+            <a href="#" onclick="openLightbox('vystavka%20(13).jpg'); return false;"><img src="vystavka%20(13).jpg" alt="Фото 13" loading="lazy"></a>
+            <a href="#" onclick="openLightbox('vystavka%20(14).jpg'); return false;"><img src="vystavka%20(14).jpg" alt="Фото 14" loading="lazy"></a>
+            <a href="#" onclick="openLightbox('vystavka%20(15).jpg'); return false;"><img src="vystavka%20(15).jpg" alt="Фото 15" loading="lazy"></a>
+            <a href="#" onclick="openLightbox('vystavka%20(16).jpg'); return false;"><img src="vystavka%20(16).jpg" alt="Фото 16" loading="lazy"></a>
+            <a href="#" onclick="openLightbox('vystavka%20(17).jpg'); return false;"><img src="vystavka%20(17).jpg" alt="Фото 17" loading="lazy"></a>
+            <a href="#" onclick="openLightbox('vystavka%20(18).jpg'); return false;"><img src="vystavka%20(18).jpg" alt="Фото 18" loading="lazy"></a>
+            <a href="#" onclick="openLightbox('vystavka%20(19).jpg'); return false;"><img src="vystavka%20(19).jpg" alt="Фото 19" loading="lazy"></a>
+            <a href="#" onclick="openLightbox('vystavka%20(20).jpg'); return false;"><img src="vystavka%20(20).jpg" alt="Фото 20" loading="lazy"></a>
+            <a href="#" onclick="openLightbox('vystavka%20(21).jpg'); return false;"><img src="vystavka%20(21).jpg" alt="Фото 21" loading="lazy"></a>
+            <a href="#" onclick="openLightbox('vystavka%20(22).jpg'); return false;"><img src="vystavka%20(22).jpg" alt="Фото 22" loading="lazy"></a>
+            <a href="#" onclick="openLightbox('vystavka%20(23).jpg'); return false;"><img src="vystavka%20(23).jpg" alt="Фото 23" loading="lazy"></a>
+
+        </div>
+
+        <a href="exhibitions.html" class="back-link">← Все выставки</a>
+
+    </div>
+</main>
+
+<!-- Лайтбокс -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <span class="lightbox-close">&times;</span>
+    <img id="lightbox-img" src="" alt="">
+</div>
+
+<script>
+    function openLightbox(src) {
+        document.getElementById('lightbox-img').src = src;
+        document.getElementById('lightbox').classList.add('active');
+    }
+
+    function closeLightbox() {
+        document.getElementById('lightbox').classList.remove('active');
+    }
+
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeLightbox();
+    });
+</script>
+
+<footer>
+    <div class="container" style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; width: 100%;">
+        <span>© 2026 Иван Ризнич · Все права защищены</span>
+        <span>gallery@riznich.art</span>
+    </div>
+</footer>
+
+</body>
+</html>
