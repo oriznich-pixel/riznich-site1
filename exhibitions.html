@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Выставки — Иван Ризнич</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #faf8f6;
+            color: #1e1e1e;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            padding: 30px 0 20px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+            text-decoration: none;
+            color: #1e1e1e;
+        }
+
+        .logo span {
+            font-weight: normal;
+            color: #888;
+        }
+
+        nav {
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #1e1e1e;
+            font-size: 15px;
+            border-bottom: 2px solid transparent;
+            padding-bottom: 4px;
+            transition: 0.2s;
+        }
+
+        nav a:hover, nav a.active {
+            color: #b47b5a;
+            border-bottom-color: #b47b5a;
+        }
+
+        .page-title {
+            padding: 50px 0 30px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .page-title h1 {
+            font-size: 38px;
+            font-weight: normal;
+            letter-spacing: -0.5px;
+        }
+
+        .page-title p {
+            color: #666;
+            font-size: 16px;
+            margin-top: 8px;
+        }
+
+        .section-title {
+            font-size: 26px;
+            font-weight: normal;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 12px;
+            margin: 50px 0 25px;
+        }
+
+        .exhibition-list {
+            display: grid;
+            gap: 30px;
+        }
+
+        .exhibition {
+            background: #fff;
+            padding: 25px 30px;
+            border-radius: 4px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+            display: grid;
+            grid-template-columns: 180px 1fr;
+            gap: 25px;
+            align-items: start;
+        }
+
+        .exhibition-date {
+            color: #b47b5a;
+            font-weight: bold;
+            font-size: 15px;
+        }
+
+        .exhibition-status {
+            display: inline-block;
+            font-size: 12px;
+            padding: 3px 10px;
+            border-radius: 20px;
+            margin-top: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .status-upcoming {
+            background: #e8f0e0;
+            color: #4a6b30;
+        }
+
+        .status-past {
+            background: #f0ebe5;
+            color: #8a7a6b;
+        }
+
+        .exhibition-info h3 {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .exhibition-info p {
+            color: #555;
+            font-size: 15px;
+            margin-bottom: 10px;
+        }
+
+        .exhibition-place {
+            color: #888;
+            font-size: 14px;
+            font-style: italic;
+        }
+
+        .archive .exhibition {
+            padding: 20px 25px;
+        }
+
+        .archive .exhibition-info h3 {
+            font-size: 18px;
+        }
+
+        footer {
+            border-top: 1px solid #ddd;
+            padding: 30px 0 25px;
+            margin-top: 60px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            font-size: 14px;
+            color: #666;
+            gap: 10px;
+        }
+
+        @media (max-width: 700px) {
+            .exhibition {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            .page-title h1 {
+                font-size: 28px;
+            }
+            .header-inner {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            nav {
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container header-inner">
+        <a href="index.html" class="logo">Иван Ризнич <span>/ живопись</span></a>
+        <nav>
+            <a href="index.html">Главная</a>
+            <a href="#">Каталог</a>
+            <a href="exhibitions.html" class="active">Выставки</a>
+            <a href="#">Статьи</a>
+            <a href="#">Коллекционерам</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <div class="container">
+
+        <section class="page-title">
+            <h1>Выставки</h1>
+            <p>Анонсы предстоящих выставок и архив прошедших</p>
+        </section>
+
+        <!-- Анонсы (пока оставлены старые, ждём данные для новой) -->
+        <h2 class="section-title">Анонсы</h2>
+        <div class="exhibition-list">
+
+            <div class="exhibition">
+                <div>
+                    <div class="exhibition-date">25 мая — 15 июня 2026</div>
+                    <span class="exhibition-status status-upcoming">Скоро</span>
+                </div>
+                <div class="exhibition-info">
+                    <h3>«Свет и тень»</h3>
+                    <p>Персональная выставка. Новые работы 2024–2026 годов: живопись, графика, фарфор.</p>
+                    <div class="exhibition-place">Галерея «Арт-Холл», Москва</div>
+                </div>
+            </div>
+
+            <div class="exhibition">
+                <div>
+                    <div class="exhibition-date">10–30 апреля 2026</div>
+                    <span class="exhibition-status status-upcoming">Скоро</span>
+                </div>
+                <div class="exhibition-info">
+                    <h3>«Традиция и современность»</h3>
+                    <p>Групповая выставка. Участие с серией городских пейзажей и авторским фарфором.</p>
+                    <div class="exhibition-place">Музей современного искусства, зал №4</div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Архив: теперь только новая выставка -->
+        <h2 class="section-title">Прошедшие выставки</h2>
+        <div class="exhibition-list archive">
+
+            <div class="exhibition">
+                <div>
+                    <div class="exhibition-date">12 января — 12 февраля</div>
+                    <span class="exhibition-status status-past">Завершена</span>
+                </div>
+                <div class="exhibition-info">
+                    <h3>«Искусство в каждом штрихе»</h3>
+                    <p>Эта выставка раскрывает многогранный талант мастера. Он был виртуозным мастером фарфоровой росписи, скульптором и вдохновлённым анималистом, чьей музой служила природа.</p>
+                    <div class="exhibition-place">Библиотечно-культурный центр «Батискаф», Кронштадт, ул. Флотская, 5</div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</main>
+
+<footer>
+    <div class="container" style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; width: 100%;">
+        <span>© 2026 Иван Ризнич · Все права защищены</span>
+        <span>gallery@riznich.art</span>
+    </div>
+</footer>
+
+</body>
+</html>
