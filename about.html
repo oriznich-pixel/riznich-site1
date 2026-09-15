@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>О художнике — Иван Ризнич</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #faf8f6;
+            color: #1e1e1e;
+            line-height: 1.6;
+        }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+        header {
+            padding: 30px 0 20px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+            text-decoration: none;
+            color: #1e1e1e;
+        }
+        .logo span { font-weight: normal; color: #888; }
+
+        nav { display: flex; gap: 25px; flex-wrap: wrap; }
+        nav a {
+            text-decoration: none;
+            color: #1e1e1e;
+            font-size: 15px;
+            border-bottom: 2px solid transparent;
+            padding-bottom: 4px;
+            transition: 0.2s;
+        }
+        nav a:hover, nav a.active {
+            color: #b47b5a;
+            border-bottom-color: #b47b5a;
+        }
+
+        .page-title {
+            padding: 50px 0 30px;
+            border-bottom: 1px solid #ddd;
+        }
+        .page-title h1 {
+            font-size: 38px;
+            font-weight: normal;
+            letter-spacing: -0.5px;
+        }
+        .page-title p {
+            color: #666;
+            font-size: 16px;
+            margin-top: 8px;
+        }
+
+        .dates {
+            color: #b47b5a;
+            font-weight: bold;
+            font-size: 15px;
+            margin-top: 10px;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 360px 1fr;
+            gap: 50px;
+            margin: 50px 0;
+            align-items: start;
+        }
+
+        .about-photo {
+            background: #ede8e2;
+            aspect-ratio: 3/4;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+        }
+        .about-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .about-text p {
+            font-size: 17px;
+            color: #3d3d3d;
+            margin-bottom: 18px;
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: normal;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 12px;
+            margin: 40px 0 25px;
+        }
+
+        .timeline {
+            display: grid;
+            gap: 18px;
+        }
+
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            gap: 20px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #ece6e0;
+        }
+        .timeline-item:last-child { border-bottom: none; }
+
+        .timeline-year {
+            color: #b47b5a;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .timeline-text {
+            color: #3d3d3d;
+            font-size: 16px;
+        }
+
+        /* Список музеев */
+        .museums {
+            display: grid;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .museums li {
+            list-style: none;
+            padding-left: 24px;
+            position: relative;
+            color: #3d3d3d;
+            font-size: 16px;
+        }
+
+        .museums li::before {
+            content: "•";
+            color: #b47b5a;
+            position: absolute;
+            left: 6px;
+            font-size: 20px;
+            line-height: 1;
+            top: 2px;
+        }
+
+        /* Награды */
+        .awards {
+            display: grid;
+            gap: 10px;
+        }
+
+        .awards li {
+            list-style: none;
+            padding: 12px 18px;
+            background: #fff;
+            border-radius: 4px;
+            border-left: 3px solid #b47b5a;
+            font-size: 15px;
+            color: #3d3d3d;
+        }
+
+        /* Выставки */
+        .exhibitions-list {
+            display: grid;
+            gap: 10px;
+        }
+
+        .exhibitions-list li {
+            list-style: none;
+            padding: 12px 18px;
+            background: #fff;
+            border-radius: 4px;
+            font-size: 15px;
+            color: #3d3d3d;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin: 30px 0 10px;
+            color: #b47b5a;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 15px;
+        }
+        .back-link:hover { color: #9e694b; }
+
+        footer {
+            border-top: 1px solid #ddd;
+            padding: 30px 0 25px;
+            margin-top: 60px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            font-size: 14px;
+            color: #666;
+            gap: 10px;
+        }
+
+        @media (max-width: 800px) {
+            .about-grid { grid-template-columns: 1fr; gap: 30px; }
+            .page-title h1 { font-size: 26px; }
+            .header-inner { flex-direction: column; align-items: flex-start; }
+            nav { gap: 15px; }
+            .timeline-item { grid-template-columns: 1fr; gap: 4px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container header-inner">
+        <a href="index.html" class="logo">Иван Ризнич <span>/ живопись</span></a>
+        <nav>
+            <a href="index.html">Главная</a>
+            <a href="#">Каталог</a>
+            <a href="exhibitions.html">Выставки</a>
+            <a href="#">Статьи</a>
+            <a href="about.html" class="active">О художнике</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <div class="container">
+
+        <section class="page-title">
+            <h1>Иван Иванович Ризнич</h1>
+            <div class="dates">20 января 1908, Санкт-Петербург — 27 ноября 1998, Санкт-Петербург</div>
+            <p>Художник по росписи фарфора, скульптор, график, иллюстратор</p>
+        </section>
+
+        <section class="about-grid">
+            <div class="about-photo">
+                <img src="foto.jpg" alt="Иван Ризнич">
+            </div>
+            <div class="about-text">
+                <p>
+                    Иван Иванович Ризнич — художник, чьи произведения хранятся в Государственном Эрмитаже, Государственном Русском музее и многих других музеях и частных собраниях в России и за рубежом.
+                </p>
+                <p>
+                    Виртуозный мастер фарфоровой росписи, скульптор и вдохновлённый анималист, чьей музой всегда служила природа. Основная тема его творчества — мир животных, охота и природа.
+                </p>
+                <p>
+                    С 1929 года, одновременно с работой на заводе, Иван Иванович работал в книжной иллюстрации. В 1937 году принимал участие как живописец и скульптор в создании барельефов на фасаде Химкинского вокзала.
+                </p>
+            </div>
+        </section>
+
+        <!-- Хронология -->
+        <h2 class="section-title">Хронология</h2>
+        <div class="timeline">
+
+            <div class="timeline-item">
+                <div class="timeline-year">1908</div>
+                <div class="timeline-text">Родился 20 января в Санкт-Петербурге.</div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-year">1926</div>
+                <div class="timeline-text">Окончил художественную школу в Павловске. Поступил на работу на Государственный фарфоровый завод им. М.В. Ломоносова.</div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-year">1927</div>
+                <div class="timeline-text">Участие в Международной выставке в Милане. Получил Почётный диплом.</div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-year">1929</div>
+                <div class="timeline-text">Начал работать в книжной иллюстрации — параллельно с работой на заводе.</div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-year">1930</div>
+                <div class="timeline-text">По призыву попал на Черноморский флот.</div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-year">1933</div>
+                <div class="timeline-text">Демобилизовался и вернулся на завод.</div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-year">1937</div>
+                <div class="timeline-text">Принял участие как живописец и скульптор в создании барельефов на фасаде Химкинского вокзала. Участие в Международной выставке в Париже — Почётный диплом.</div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-year">1939</div>
+                <div class="timeline-text">Участие в Международной выставке в Нью-Йорке.</div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-year">1941</div>
+                <div class="timeline-text">По мобилизации ушёл на войну, служил на кораблях Краснознамённого Балтийского флота.</div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-year">1944</div>
+                <div class="timeline-text">Награждён Орденом Трудового Красного Знамени.</div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-year">1945</div>
+                <div class="timeline-text">Отозван из флота для работы в промышленности, вернулся на завод.</div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-year">1957</div>
+                <div class="timeline-text">Оставил работу на заводе.</div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-year">1975</div>
+                <div class="timeline-text">Приглашён на ЛФЗ для выполнения правительственного заказа — росписи сервиза на тему охоты в подарок Генеральному секретарю ЦК КПСС Л.И. Брежневу. Никто, кроме И.И. Ризнича, не мог исполнить этот заказ. С этого года и до конца жизни вновь работал на заводе.</div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-year">1998</div>
+                <div class="timeline-text">Скончался 27 ноября в Санкт-Петербурге.</div>
+            </div>
+
+        </div>
+
+        <!-- Награды -->
+        <h2 class="section-title">Награды</h2>
+        <ul class="awards">
+            <li>Орден Трудового Красного Знамени (1944)</li>
+            <li>Медаль «За боевые заслуги»</li>
+            <li>Медаль «За оборону Ленинграда»</li>
+        </ul>
+
+        <!-- Международные выставки -->
+        <h2 class="section-title">Международные выставки</h2>
+        <ul class="exhibitions-list">
+            <li><strong>1927</strong> — Милан, Международная выставка. Почётный диплом</li>
+            <li><strong>1937</strong> — Париж, Международная выставка. Почётный диплом</li>
+            <li><strong>1939</strong> — Нью-Йорк, Международная выставка</li>
+        </ul>
+
+        <!-- Где хранятся работы -->
+        <h2 class="section-title">Где хранятся произведения</h2>
+        <ul class="museums">
+            <li>Государственный Эрмитаж</li>
+            <li>Государственный Русский музей</li>
+            <li>Многие другие музеи и частные собрания в России и за рубежом</li>
+        </ul>
+
+        <a href="index.html" class="back-link">← На главную</a>
+
+    </div>
+</main>
+
+<footer>
+    <div class="container" style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; width: 100%;">
+        <span>© 2026 Иван Ризнич · Все права защищены</span>
+        <span>gallery@riznich.art</span>
+    </div>
+</footer>
+
+</body>
+</html>
