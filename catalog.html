@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Каталог — Иван Ризнич</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #faf8f6;
+            color: #1e1e1e;
+            line-height: 1.6;
+        }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+        header {
+            padding: 30px 0 20px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+            text-decoration: none;
+            color: #1e1e1e;
+        }
+        .logo span { font-weight: normal; color: #888; }
+
+        nav { display: flex; gap: 25px; flex-wrap: wrap; }
+        nav a {
+            text-decoration: none;
+            color: #1e1e1e;
+            font-size: 15px;
+            border-bottom: 2px solid transparent;
+            padding-bottom: 4px;
+            transition: 0.2s;
+        }
+        nav a:hover, nav a.active {
+            color: #b47b5a;
+            border-bottom-color: #b47b5a;
+        }
+
+        /* Заголовок */
+        .page-title {
+            padding: 50px 0 30px;
+            border-bottom: 1px solid #ddd;
+        }
+        .page-title h1 {
+            font-size: 38px;
+            font-weight: normal;
+            letter-spacing: -0.5px;
+        }
+        .page-title p {
+            color: #666;
+            font-size: 16px;
+            margin-top: 8px;
+        }
+
+        /* Навигация по разделам каталога */
+        .catalog-nav {
+            display: flex;
+            gap: 30px;
+            margin: 30px 0 10px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #ddd;
+            flex-wrap: wrap;
+        }
+        .catalog-nav a {
+            text-decoration: none;
+            color: #b47b5a;
+            font-weight: bold;
+            font-size: 16px;
+            transition: 0.2s;
+        }
+        .catalog-nav a:hover { color: #9e694b; }
+
+        /* Раздел */
+        .category-title {
+            font-size: 28px;
+            font-weight: normal;
+            padding-bottom: 12px;
+            margin: 60px 0 8px;
+            border-bottom: 2px solid #b47b5a;
+            scroll-margin-top: 20px;
+        }
+        .category-desc {
+            color: #666;
+            font-size: 15px;
+            margin-bottom: 25px;
+        }
+
+        /* Сетка работ */
+        .works-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 25px;
+            margin-bottom: 20px;
+        }
+
+        .work-card {
+            background: #fff;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            transition: 0.2s;
+            cursor: pointer;
+        }
+        .work-card:hover {
+            box-shadow: 0 6px 20px rgba(0,0,0,0.09);
+            transform: translateY(-2px);
+        }
+
+        .work-img {
+            aspect-ratio: 1/1;
+            background: #ede8e2;
+            overflow: hidden;
+        }
+        .work-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .work-body {
+            padding: 16px 18px 18px;
+        }
+        .work-body h3 {
+            font-size: 17px;
+            font-weight: bold;
+            margin-bottom: 6px;
+        }
+        .work-body .technique {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 4px;
+        }
+        .work-body .year {
+            display: inline-block;
+            font-size: 13px;
+            background: #f0ebe5;
+            padding: 2px 12px;
+            border-radius: 20px;
+            color: #5f4f40;
+            margin-top: 6px;
+        }
+
+        /* Лайтбокс */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .lightbox.active { display: flex; }
+        .lightbox img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #fff;
+            font-size: 40px;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        footer {
+            border-top: 1px solid #ddd;
+            padding: 30px 0 25px;
+            margin-top: 60px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            font-size: 14px;
+            color: #666;
+            gap: 10px;
+        }
+
+        @media (max-width: 700px) {
+            .page-title h1 { font-size: 26px; }
+            .header-inner { flex-direction: column; align-items: flex-start; }
+            nav { gap: 10px 16px; }
+            nav a { font-size: 14px; }
+            .works-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 14px; }
+            .work-body { padding: 12px 14px 14px; }
+            .work-body h3 { font-size: 15px; }
+            .category-title { font-size: 22px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container header-inner">
+        <a href="index.html" class="logo">Иван Ризнич <span>/ живопись</span></a>
+        <nav>
+            <a href="index.html">Главная</a>
+            <a href="catalog.html" class="active">Каталог</a>
+            <a href="exhibitions.html">Выставки</a>
+            <a href="#">Статьи</a>
+            <a href="about.html">О художнике</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <div class="container">
+
+        <section class="page-title">
+            <h1>Каталог работ</h1>
+            <p>Фарфор, графика, скульптура — из собрания семьи и частных коллекций</p>
+        </section>
+
+        <!-- Навигация по разделам -->
+        <div class="catalog-nav">
+            <a href="#farfor">Фарфор</a>
+            <a href="#grafika">Графика</a>
+        </div>
+
+        <!-- ================= ФАРФОР ================= -->
+        <h2 class="category-title" id="farfor">Фарфор</h2>
+        <p class="category-desc">Роспись по фарфору, скульптура малых форм, сервизы, авторские тарелки</p>
+
+        <div class="works-grid">
+
+            <!-- КАРТОЧКА РАБОТЫ — пример. Копируйте этот блок для каждой новой работы -->
+            <div class="work-card" onclick="openLightbox('farfor1.jpg')">
+                <div class="work-img">
+                    <img src="farfor1.jpg" alt="Название работы" loading="lazy">
+                </div>
+                <div class="work-body">
+                    <h3>Название работы</h3>
+                    <div class="technique">Фарфор, надглазурная роспись</div>
+                    <span class="year">1950</span>
+                </div>
+            </div>
+            <!-- КОНЕЦ КАРТОЧКИ -->
+
+            <div class="work-card" onclick="openLightbox('farfor2.jpg')">
+                <div class="work-img">
+                    <img src="farfor2.jpg" alt="Название работы" loading="lazy">
+                </div>
+                <div class="work-body">
+                    <h3>Название работы</h3>
+                    <div class="technique">Фарфор, подглазурная роспись</div>
+                    <span class="year">1960</span>
+                </div>
+            </div>
+
+            <div class="work-card" onclick="openLightbox('farfor3.jpg')">
+                <div class="work-img">
+                    <img src="farfor3.jpg" alt="Название работы" loading="lazy">
+                </div>
+                <div class="work-body">
+                    <h3>Название работы</h3>
+                    <div class="technique">Фарфор, скульптура</div>
+                    <span class="year">1970</span>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ================= ГРАФИКА ================= -->
+        <h2 class="category-title" id="grafika">Графика</h2>
+        <p class="category-desc">Рисунок, акварель, книжная иллюстрация, эскизы</p>
+
+        <div class="works-grid">
+
+            <div class="work-card" onclick="openLightbox('grafika1.jpg')">
+                <div class="work-img">
+                    <img src="grafika1.jpg" alt="Название работы" loading="lazy">
+                </div>
+                <div class="work-body">
+                    <h3>Название работы</h3>
+                    <div class="technique">Бумага, карандаш</div>
+                    <span class="year">1940</span>
+                </div>
+            </div>
+
+            <div class="work-card" onclick="openLightbox('grafika2.jpg')">
+                <div class="work-img">
+                    <img src="grafika2.jpg" alt="Название работы" loading="lazy">
+                </div>
+                <div class="work-body">
+                    <h3>Название работы</h3>
+                    <div class="technique">Бумага, акварель</div>
+                    <span class="year">1955</span>
+                </div>
+            </div>
+
+            <div class="work-card" onclick="openLightbox('grafika3.jpg')">
+                <div class="work-img">
+                    <img src="grafika3.jpg" alt="Название работы" loading="lazy">
+                </div>
+                <div class="work-body">
+                    <h3>Название работы</h3>
+                    <div class="technique">Бумага, тушь</div>
+                    <span class="year">1962</span>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</main>
+
+<!-- Лайтбокс -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <span class="lightbox-close">&times;</span>
+    <img id="lightbox-img" src="" alt="">
+</div>
+
+<script>
+    function openLightbox(src) {
+        document.getElementById('lightbox-img').src = src;
+        document.getElementById('lightbox').classList.add('active');
+    }
+
+    function closeLightbox() {
+        document.getElementById('lightbox').classList.remove('active');
+    }
+
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeLightbox();
+    });
+</script>
+
+<footer>
+    <div class="container" style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; width: 100%;">
+        <span>© 2026 Иван Ризнич · Все права защищены</span>
+        <span>gallery@riznich.art</span>
+    </div>
+</footer>
+
+</body>
+</html>
